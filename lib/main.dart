@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:corona/screens/home.dart';
+import 'navbar_controller.dart';
 
 
 void main() {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeScreen(),
+      home: BottomNavigationBarController(),
     );
   }
 }

@@ -3,6 +3,7 @@ import 'package:corona/service.dart';
 import 'package:intl/intl.dart';
 
 class HomeScreen extends StatefulWidget {
+   const HomeScreen({Key key}) : super(key: key);
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -21,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
       totalIntubated: "",
       totalIntensiveCare: "",
       tests: "",
+      cases: "",
       totalTests: "",
       date: ""
     );
@@ -68,24 +70,24 @@ class _HomeScreenState extends State<HomeScreen> {
             title: new Text('General: ', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),),
             enabled: true,
           ),
+          
             new ListTile(
-              
-            title: new Text("Total Tests: " + formatter.format(int.parse(lastValue.totalTests)), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+            title: new Text("Total Tests: " + (int.tryParse(lastValue.totalTests)!=null?formatter.format(int.tryParse(lastValue.totalTests)):""), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
             leading: Icon(Icons.assignment_turned_in),
             enabled: true,
           ),
             new ListTile(
-            title: new Text("Total Cases: " + formatter.format(int.parse(lastValue.totalPatients)), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+            title: new Text("Total Cases: " + (int.tryParse(lastValue.totalPatients)!=null?formatter.format(int.tryParse(lastValue.totalPatients)):""), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
             leading: Icon(Icons.add),
             enabled: true,
           ),
             new ListTile(
-            title: new Text("Total Deaths: " + formatter.format(int.parse(lastValue.totalDeaths)), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+            title: new Text("Total Deaths: " + (int.tryParse(lastValue.totalDeaths)!=null?formatter.format(int.tryParse(lastValue.totalDeaths)):""), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
             leading: Icon(Icons.clear),
             enabled: true,
           ),
             new ListTile(
-            title: new Text("Total Recovered: " + formatter.format(int.parse(lastValue.totalRecovered)), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+            title: new Text("Total Recovered: " + (int.tryParse(lastValue.totalRecovered)!=null?formatter.format(int.tryParse(lastValue.totalRecovered)):""), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
             leading: Icon(Icons.accessibility_new),
             enabled: true,
           ),
@@ -95,22 +97,22 @@ class _HomeScreenState extends State<HomeScreen> {
             enabled: true,
           ),
           new ListTile(
-            title: new Text("Tests: " + formatter.format(int.parse(lastValue.tests)), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+            title: new Text("Tests: " + (int.tryParse(lastValue.tests)!=null?formatter.format(int.tryParse(lastValue.tests)):""), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
             leading: Icon(Icons.assignment_turned_in),
             enabled: true,
           ),
           new ListTile(
-            title: new Text("Cases: " + formatter.format(int.parse(lastValue.cases)), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+            title: new Text("Cases: " + (int.tryParse(lastValue.cases)!=null?formatter.format(int.tryParse(lastValue.cases)):"22"), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
             leading: Icon(Icons.add),
             enabled: true,
           ),
           new ListTile(
-            title: new Text("Deaths: " + formatter.format(int.parse(lastValue.deaths)), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+            title: new Text("Deaths: " + (int.tryParse(lastValue.deaths)!=null?formatter.format(int.tryParse(lastValue.deaths)):""), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
             leading: Icon(Icons.clear),
             enabled: true,
           ),
             new ListTile(
-            title: new Text("Recovered: " + formatter.format(int.parse(lastValue.recovered)), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+            title: new Text("Recovered: " + (int.tryParse(lastValue.recovered)!=null?formatter.format(int.tryParse(lastValue.recovered)):""), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
             leading: Icon(Icons.accessibility_new),
             enabled: true,
           ),
