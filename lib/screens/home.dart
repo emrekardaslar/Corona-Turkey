@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sampleproject/service.dart';
+import 'package:corona/service.dart';
+import 'package:intl/intl.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -11,8 +12,8 @@ class _HomeScreenState extends State<HomeScreen> {
   String s = '';
   Map<String,Corona> coronaMap = new Map<String,Corona>();
   Corona lastValue = new Corona(
-      cases: "",
-      totalCases: "",
+      patients: "",
+      totalPatients: "",
       deaths: "",
       totalDeaths: "",
       recovered: "",
@@ -31,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
     coronaMap.clear();
     coronaMap = corona; 
     lastValue = coronaMap.values.last;
+    
     setState(() { });
   }
   
@@ -41,6 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
       runService();
     }
     //runService();
+    final formatter = new NumberFormat("###,###,###,###");
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -66,47 +69,48 @@ class _HomeScreenState extends State<HomeScreen> {
             enabled: true,
           ),
             new ListTile(
-            title: new Text("Total Tests: " + lastValue.totalTests, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+              
+            title: new Text("Total Tests: " + formatter.format(int.parse(lastValue.totalTests)), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
             leading: Icon(Icons.assignment_turned_in),
             enabled: true,
           ),
             new ListTile(
-            title: new Text("Total Cases: " + lastValue.totalCases, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+            title: new Text("Total Cases: " + formatter.format(int.parse(lastValue.totalPatients)), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
             leading: Icon(Icons.add),
             enabled: true,
           ),
             new ListTile(
-            title: new Text("Total Deaths: " + lastValue.totalDeaths, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+            title: new Text("Total Deaths: " + formatter.format(int.parse(lastValue.totalDeaths)), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
             leading: Icon(Icons.clear),
             enabled: true,
           ),
             new ListTile(
-            title: new Text("Total Recovered: " + lastValue.totalRecovered, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+            title: new Text("Total Recovered: " + formatter.format(int.parse(lastValue.totalRecovered)), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
             leading: Icon(Icons.accessibility_new),
             enabled: true,
           ),
             new ListTile(
-            contentPadding: const EdgeInsets.fromLTRB(20, 50 ,0, 0),
+            //contentPadding: const EdgeInsets.fromLTRB(20, 50 ,0, 0),
             title: new Text('Today: ', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),),
             enabled: true,
           ),
           new ListTile(
-            title: new Text("Tests: " + lastValue.tests, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+            title: new Text("Tests: " + formatter.format(int.parse(lastValue.tests)), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
             leading: Icon(Icons.assignment_turned_in),
             enabled: true,
           ),
           new ListTile(
-            title: new Text("Cases: " + lastValue.cases, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+            title: new Text("Cases: " + formatter.format(int.parse(lastValue.cases)), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
             leading: Icon(Icons.add),
             enabled: true,
           ),
           new ListTile(
-            title: new Text("Deaths: " + lastValue.deaths, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+            title: new Text("Deaths: " + formatter.format(int.parse(lastValue.deaths)), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
             leading: Icon(Icons.clear),
             enabled: true,
           ),
             new ListTile(
-            title: new Text("Recovered: " + lastValue.recovered, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+            title: new Text("Recovered: " + formatter.format(int.parse(lastValue.recovered)), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
             leading: Icon(Icons.accessibility_new),
             enabled: true,
           ),

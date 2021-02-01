@@ -16,8 +16,8 @@ Map<String, Corona> coronaFromJson(String str) => Map.from(json.decode(str)).map
 String coronaToJson(Map<String, Corona> data) => json.encode(Map.from(data).map((k, v) => MapEntry<String, dynamic>(k, v.toJson())));
 
 class Corona {
-    String cases='';
-    String totalCases='';
+    String patients='';
+    String totalPatients='';
     String deaths='';
     String totalDeaths='';
     String recovered='';
@@ -25,12 +25,14 @@ class Corona {
     String totalIntubated='';
     String totalIntensiveCare='';
     String tests='';
+    String cases = '';
     String totalTests='';
     String date='';
+    String pneumoniaPercent = '';
 
     Corona({
-        this.cases,
-        this.totalCases,
+        this.patients,
+        this.totalPatients,
         this.deaths,
         this.totalDeaths,
         this.recovered,
@@ -38,13 +40,15 @@ class Corona {
         this.totalIntubated,
         this.totalIntensiveCare,
         this.tests,
+        this.cases,
         this.totalTests,
         this.date,
+        this.pneumoniaPercent
     });
 
     factory Corona.fromJson(Map<String, dynamic> json) => Corona(
-        cases: json["cases"],
-        totalCases: json["totalCases"],
+        patients: json["patients"],
+        totalPatients: json["totalPatients"],
         deaths: json["deaths"],
         totalDeaths: json["totalDeaths"],
         recovered: json["recovered"],
@@ -52,13 +56,15 @@ class Corona {
         totalIntubated: json["totalIntubated"],
         totalIntensiveCare: json["totalIntensiveCare"],
         tests: json["tests"],
+        cases: json["cases"],
         totalTests: json["totalTests"],
         date: json["date"],
+        pneumoniaPercent: json["pneumoniaPercent"]
     );
 
     Map<String, dynamic> toJson() => {
-        "cases": cases,
-        "totalCases": totalCases,
+        "patients": patients,
+        "totalCases": totalPatients,
         "deaths": deaths,
         "totalDeaths": totalDeaths,
         "recovered": recovered,
@@ -66,7 +72,9 @@ class Corona {
         "totalIntubated": totalIntubated,
         "totalIntensiveCare": totalIntensiveCare,
         "tests": tests,
+        "cases": cases,
         "totalTests": totalTests,
         "date": date,
+        "pneumoniaPercent": pneumoniaPercent
     };
 }

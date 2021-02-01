@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sampleproject/screens/home.dart';
+import 'package:corona/screens/home.dart';
 
 
 void main() {
