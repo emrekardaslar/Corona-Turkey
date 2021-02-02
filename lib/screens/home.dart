@@ -34,8 +34,8 @@ class _HomeScreenState extends State<HomeScreen> {
     coronaMap.clear();
     coronaMap = corona; 
     lastValue = coronaMap.values.last;
-    
-    setState(() { });
+    if (this.mounted)
+      setState(() { });
   }
   
   @override
@@ -102,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
             enabled: true,
           ),
           new ListTile(
-            title: new Text("Cases: " + (int.tryParse(lastValue.cases)!=null?formatter.format(int.tryParse(lastValue.cases)):"22"), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+            title: new Text("Cases: " + (int.tryParse(lastValue.cases)!=null?formatter.format(int.tryParse(lastValue.cases)):""), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
             leading: Icon(Icons.add),
             enabled: true,
           ),
