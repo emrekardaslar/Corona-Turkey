@@ -8,27 +8,13 @@ class GraphScreen extends StatefulWidget {
   _GraphScreenState createState() => _GraphScreenState();
 }
 
-
 class _GraphScreenState extends State<GraphScreen> {
   bool firstLoad=true;
   String s = '';
-
+  String dropdownValue = "Recovered";
   final List<Corona> data = [];
   Map<String,Corona> coronaMap = new Map<String,Corona>();
-  Corona lastValue = new Corona(
-      patients: "",
-      totalPatients: "",
-      deaths: "",
-      totalDeaths: "",
-      recovered: "",
-      totalRecovered: "",
-      totalIntubated: "",
-      totalIntensiveCare: "",
-      tests: "",
-      cases: "",
-      totalTests: "",
-      date: ""
-    );
+  CovidChart covidChart = new CovidChart(data: null);
 
   Future runService() async {
     s = await exampleApi();
@@ -43,34 +29,31 @@ class _GraphScreenState extends State<GraphScreen> {
     await runService();  
     coronaMap.forEach((k, v) => data.add(
       Corona(
-        date: v.date,
-        deaths: v.deaths
+        date: v.date??"0.0",
+        deaths: v.deaths??"0.0",
+        cases: v.cases??"0.0",
+        patients: v.patients??"0.0",
+        tests: v.tests??"0.0",
+        totalDeaths: v.totalDeaths??"0.0",
+        recovered: v.recovered??"0.0",
+        pneumoniaPercent: v.pneumoniaPercent??"0.0",
+        totalIntensiveCare: v.totalIntensiveCare??"0.0",
+        totalIntubated: v.totalIntubated??"0.0",
+        totalPatients: v.totalPatients??"0.0",
+        totalRecovered: v.totalPatients??"0.0",
+        totalTests: v.totalTests??"0.0"
       )
     ));
   }
-
+  
   @override
   Widget build(BuildContext context) {
     if (firstLoad) {
       firstLoad = false;
       fillList();
-
     }
-
-/*
-    final List<Corona> data = [
-      Corona(
-        cases: "2000",
-        date: "01/05/2020"
-      ),
-
-      Corona(
-        cases: "2500",
-        date: "02/05/2020"
-      ),
-    ];*/
-
-    return Scaffold(
+    //String dropdownValue = "Recovered";
+    return Scaffold(  
       appBar: AppBar(
         backgroundColor: Colors.blue,
         centerTitle: true,
@@ -83,10 +66,25 @@ class _GraphScreenState extends State<GraphScreen> {
           )
         ),
       ),
-      body: Center(
-        child: CovidChart(
-          data: data,
-        ),
+      body: Column(
+        children: <Widget>[
+          DropdownButton(
+            value: dropdownValue,
+            items: <String>['Recovered', 'Deaths', 'Cases', 'Patients', 'Tests']
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+            }).toList(), 
+            onChanged:(String newValue) {
+              setState(() {
+                dropdownValue = newValue;
+                covidChart = new CovidChart(data: data, option: dropdownValue,);
+              });
+            }, 
+          ),covidChart = new CovidChart(data: data, option: dropdownValue,)
+        ],
       )
     );
   }
